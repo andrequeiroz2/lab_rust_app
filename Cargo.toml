@@ -1,0 +1,25 @@
+[package]
+name = "lab"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+#Actix web framework and run-time
+actix-web = "4.4.0"
+actix-rt = "2.7.0"
+
+#Environment variable access libraries
+dotenv = "0.15.0"
+
+#MySql access library
+sqlx = {version = "0.6.2", default_features = false, features = ["mysql","runtime-tokio-native-tls", "macros","chrono"]}
+
+# Data serialization librar
+serde = { version = "1.0.144", features = ["derive"] }
+
+# Data Log
+log = "0.4"
+log4rs = "1.0.0"
