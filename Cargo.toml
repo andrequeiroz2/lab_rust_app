@@ -23,3 +23,16 @@ serde = { version = "1.0.144", features = ["derive"] }
 # Data Log
 log = "0.4"
 log4rs = "1.0.0"
+
+# Other utils
+chrono = {version = "0.4.22", features = ["serde"]}
+
+# Openssl for build (if openssl is not already installed on the dev server)
+openssl = { version = "0.10.41", features = ["vendored"] }
+
+scrypt = "0.9.0"
+
+strum = "0.26"
+strum_macros = "0.26"
+
+jsonwebtoken = "8.0.1"

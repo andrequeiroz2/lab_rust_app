@@ -4,7 +4,8 @@ pub struct Config{
     pub database_url: String,
     pub allowed_origin: String,
     pub max_age: usize,
-    pub host_port: String
+    pub host_port: String,
+    pub jwt_expiration_time_seconds: i64
 }
 
 impl Config{
@@ -25,8 +26,10 @@ impl Config{
                 .parse::<usize>().unwrap(),
 
             host_port: std::env::var("HOST_PORT")
-                .expect("HOST_PORT must be specified")
-                
+                .expect("HOST_PORT must be specified"),
+
+            jwt_expiration_time_seconds: std::env::var("JWT_EXPIRATION_TIME_SECONDS")
+            .expect("JWT_EXPIRATION_TIME_SECONDS must be specified").parse::<i64>().unwrap(),    
         }
     }
 }
