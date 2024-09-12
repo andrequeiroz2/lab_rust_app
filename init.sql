@@ -8,6 +8,7 @@ create table users
     username varchar(60) not null,
     email varchar(140) not null,
     `password` varchar(255) not null,
-    created_at TIMESTAMP default now(),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT ix_users_email UNIQUE (email)
 );

@@ -13,6 +13,17 @@ pub struct User{
     pub updated_at: Option<chrono::DateTime<Utc>>
 }
 
+#[derive(Serialize, Debug, Clone, sqlx::FromRow)]
+pub struct UserComplit{
+    pub id: i32,
+    pub username: String,
+    pub email: String,
+    pub password: String,
+    pub created_at: Option<chrono::DateTime<Utc>>,
+    #[serde(default)]
+    pub updated_at: Option<chrono::DateTime<Utc>>
+}
+
 #[derive(Debug, Clone, Deserialize)]
 pub struct UserCreate{
     pub username: String,

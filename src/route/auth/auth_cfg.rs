@@ -1,12 +1,8 @@
 use actix_web::web;
+use crate::handler::auth_handler::auth_login;
 
 pub fn auth_cfg(cfg: &mut web::ServiceConfig){
-    cfg.service(web::scope("/auth"));
+    cfg.service(web::scope("/login")
+        .route("/", web::post().to(auth_login))
+    );
 }
-
-// pub fn login_cfg(cfg: &mut web::ServiceConfig){
-//     cfg.service(
-//         web::scope("/login")
-//         .route("/", web::post().to(get_login))
-//     );
-// }

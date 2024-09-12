@@ -4,9 +4,7 @@ use chrono::Utc;
 use crate::{
     handler::error_handler::ErrorEnum, 
     model::user::user_model::{
-        User, 
-        UserCreate,
-        UserUpdate
+        User, UserCreate, UserComplit, UserUpdate
     }
 };
 
@@ -123,6 +121,32 @@ pub async fn get_user_by_email_db(
             id: user_row.id,
             username: user_row.username,
             email: user_row.email,
+            created_at: user_row.created_at,
+            updated_at: user_row.updated_at,
+        }
+    )
+    .map_err(|err| ErrorEnum::NotFound("User Not Found".into(), err.to_string()))?;
+
+    Ok(user_row)
+}
+
+pub async fn get_user_complet_by_email_db(
+    pool: &MySqlPool,
+    email: &String
+)-> Result<UserComplit, ErrorEnum>{
+
+    let user_row= sqlx::query!(
+        "SELECT id, username, email, password, created_at, updated_at FROM users WHERE email=?",
+        email
+    )
+    .fetch_one(pool)
+    .await
+    .map(|user_row|
+        UserComplit{
+            id: user_row.id,
+            username: user_row.username,
+            email: user_row.email,
+            password: user_row.password,
             created_at: user_row.created_at,
             updated_at: user_row.updated_at,
         }

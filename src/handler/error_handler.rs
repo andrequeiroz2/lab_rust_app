@@ -10,11 +10,12 @@ pub enum ErrorEnum {
     DBError(String, String),
     ActixError(String),
     ScryptError(String),
-    FileError(String),
+    FileError(String, String),
     JsonWebTokenError(String),
     BadRequest(String),
     NotFound(String, String),
-    Conflict(String, String)
+    Conflict(String, String),
+    Unauthorized(String, String)
 }
 
 #[derive(Debug, Serialize)]
@@ -42,8 +43,8 @@ impl ErrorEnum{
                 "Internal Server Error".into()
             },
 
-            ErrorEnum::FileError(msg)=>{
-                error!("File error occured: {:?}", msg);
+            ErrorEnum::FileError(msg, e)=>{
+                error!("File error occured: {:?}", e);
                 "Internal Server Error".into()
             },
 
@@ -66,6 +67,11 @@ impl ErrorEnum{
                 error!("Conflict occured: {:?}", e);
                 msg.into()
             }
+
+            ErrorEnum::Unauthorized(msg, e)=>{
+                error!("Unauthorized occured: {:?}", e);
+                msg.into()
+            }
         }
     }
 }
@@ -77,6 +83,7 @@ impl error::ResponseError for ErrorEnum {
 
             ErrorEnum::BadRequest(_msg)=>StatusCode::BAD_REQUEST,
             ErrorEnum::NotFound(_msg, _)=>StatusCode::NOT_FOUND,
+            ErrorEnum::Unauthorized(_msg, _)=>StatusCode::UNAUTHORIZED,
 
             // ErrorEnum::DBError(_msg) | 
             // ErrorEnum::ActixError(_msg) |
