@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 
 #Actix web framework and run-time
-actix-web = "4.4.0"
+actix-web = "4.9.0"
 actix-rt = "2.7.0"
 
 #Environment variable access libraries
@@ -35,4 +35,8 @@ scrypt = "0.9.0"
 strum = "0.26"
 strum_macros = "0.26"
 
-jsonwebtoken = "8.0.1"
+jsonwebtoken = "9.3.0"
+
+actix-web-lab = "0.22.0"
+
+lazy_static = "1.5.0"

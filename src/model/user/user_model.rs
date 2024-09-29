@@ -20,7 +20,7 @@ pub struct UserComplit{
     pub email: String,
     pub password: String,
     pub created_at: Option<chrono::DateTime<Utc>>,
-    #[serde(default)]
+    // #[serde(default)]
     pub updated_at: Option<chrono::DateTime<Utc>>
 }
 

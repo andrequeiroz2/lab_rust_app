@@ -13,6 +13,8 @@ use route::{
     auth::auth_cfg::auth_cfg,
     user::user_cfg::user_cfg,
 };
+use actix_web_lab::middleware::from_fn;
+
 
 #[actix_rt::main]
 async fn main()-> io::Result<()> {

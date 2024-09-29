@@ -26,7 +26,7 @@ pub async fn post_user_db(
     .execute(pool)
     .await{
         Ok(r)=> r.last_insert_id(),
-        Err(e)=>Err(ErrorEnum::NotFound("User Not Found".into(), e.to_string()))?
+        Err(e)=>Err(ErrorEnum::Conflict("Email already registered".into(), e.to_string()))?
     };
     
     
